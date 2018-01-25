@@ -3,42 +3,50 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  constructor() {
+    this.state = {
+      text: undefined
+    };
+  }
+  placemark = () => {
+    this.setState = {text: "hi"};
+  }
+  
   render() {
     return (
-      <button className="square">
-        {/* TODO */this.props.serial}
+      <button className="square" onClick={this.placemark} id={this.props.serial}>
       </button>
     );
   }
 }
 
 class Board extends React.Component {
-  renderSquare(i) {
+  renderSquare(i, turnsybmol) {
     console.log('block painted', i);
-    console.log('render method square');
-    return <Square serial={i} />;
+    return <Square serial={i} mark={turnsybmol} />;
   }
 
   render() {
-    const status = 'Next player: X';
+    var mark = 'X';
+    const status = 'Next player: ' + mark;
     console.log('render method board');
     return (
       <div>
-        <div className="status">{status}</div>
+        <div className="status">{mark}</div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+          {this.renderSquare(0, mark)}
+          {this.renderSquare(1, mark)}
+          {this.renderSquare(2, mark)}
         </div>
         <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+          {this.renderSquare(3, mark)}
+          {this.renderSquare(4, mark)}
+          {this.renderSquare(5, mark)}
         </div>
         <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {this.renderSquare(6, mark)}
+          {this.renderSquare(7, mark)}
+          {this.renderSquare(8, mark)}
         </div>
       </div>
     );
